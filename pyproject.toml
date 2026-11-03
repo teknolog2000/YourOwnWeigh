@@ -1,0 +1,15 @@
+# Local development environment for the TypeScript server and Python bridge.
+# The bridge remains an independently installable package (bridge/pyproject.toml,
+# `pip install ./bridge` in CI); this root project only binds it into one uv
+# environment so `uv sync` and `uv run` work from the repository root.
+[project]
+name = "yow-dev"
+version = "0.0.0"
+requires-python = ">=3.11,<3.15"
+dependencies = ["yow-bridge"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+yow-bridge = { path = "bridge", editable = true }
